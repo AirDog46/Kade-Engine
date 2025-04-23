@@ -14,19 +14,19 @@
 	 - Linux: install the `git` package: `sudo apt install git` (ubuntu), `sudo pacman -S git` (arch), etc... (you probably already have it)
  4. Install and set up the necessary libraries:
 	 - `haxelib install lime 7.9.0`
-	 - `haxelib install openfl`
-	 - `haxelib install flixel`
+	 - `haxelib install openfl 9.1.0`
+	 - `haxelib install flixel 4.11.0`
 	 - `haxelib run lime setup`
 	 - `haxelib run lime setup flixel`
 	 - `haxelib install flixel-tools`
 	 - `haxelib run flixel-tools setup`
-	 - `haxelib install flixel-addons`
-	 - `haxelib install flixel-ui`
-	 - `haxelib install hscript`
-	 - `haxelib install newgrounds`
+	 - `haxelib install flixel-addons 2.11.0`
+	 - `haxelib install flixel-ui 2.4.0`
+	 - `haxelib install hscript 2.3.0`
+	 - `haxelib install newgrounds 1.1.5`
 	 - `haxelib git linc_luajit https://github.com/AndreiRudenko/linc_luajit.git`
 	 - `haxelib git faxe https://github.com/uhrobots/faxe`
-	 - `haxelib git polymod https://github.com/larsiusprime/polymod.git`
+	 - `haxelib install polymod 1.3.0`
 	 - `haxelib git discord_rpc https://github.com/Aidan63/linc_discord-rpc`
 	 - `haxelib install actuate`
 	 - `haxelib git extension-webm https://github.com/KadeDev/extension-webm`

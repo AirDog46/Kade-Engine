@@ -128,12 +128,12 @@ class Paths
 
 	inline static public function getSparrowAtlas(key:String, ?library:String, ?isCharacter:Bool = false)
 	{
-		var usecahce = FlxG.save.data.cacheImages;
+		var useCache = FlxG.save.data.cacheImages;
 		#if !cpp
-		usecahce = false;
+		useCache = false;
 		#end
 		if (isCharacter)
-			if (usecahce)
+			if (useCache)
 				#if cpp
 				return FlxAtlasFrames.fromSparrow(imageCached(key), file('images/characters/$key.xml', library));
 				#else

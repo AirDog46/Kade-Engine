@@ -54,7 +54,7 @@ class TitleState extends MusicBeatState
 	override public function create():Void
 	{
 		#if polymod
-		polymod.Polymod.init({modRoot: "mods", dirs: ['introMod']});
+		//polymod.Polymod.init({modRoot: "mods", dirs: ['introMod']});
 		#end
 		
 		#if sys
@@ -290,6 +290,11 @@ class TitleState extends MusicBeatState
 			MainMenuState.firstStart = true;
 			MainMenuState.finishedFunnyMove = false;
 
+			new FlxTimer().start(2, function(tmr:FlxTimer)
+			{
+				FlxG.switchState(new MainMenuState());
+				clean();
+			});
 			// FlxG.sound.play(Paths.music('titleShoot'), 0.7);
 		}
 
