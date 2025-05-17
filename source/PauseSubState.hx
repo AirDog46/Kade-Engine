@@ -33,6 +33,8 @@ class PauseSubState extends MusicBeatSubstate
 	public function new(x:Float, y:Float)
 	{
 		super();
+		cpp.vm.Gc.run(true);
+		trace("Game paused. We can run the garbage collector");
 
 		if (PlayState.instance.useVideo)
 		{
@@ -225,6 +227,10 @@ class PauseSubState extends MusicBeatSubstate
 					PlayState.instance.clean();
 					FlxG.resetState();
 				case "Exit to menu":
+					if (!FlxG.save.data.GC) {
+						cpp.vm.Gc.enable(true);
+						trace("Exiting the song. We can reenable the garbage collector");
+					}
 					PlayState.startTime = 0;
 					if (PlayState.instance.useVideo)
 					{
@@ -246,8 +252,8 @@ class PauseSubState extends MusicBeatSubstate
 						PlayState.luaModchart = null;
 					}
 					#end
-					if (FlxG.save.data.fpsCap > 290)
-						(cast (Lib.current.getChildAt(0), Main)).setFPSCap(290);
+					if (FlxG.save.data.fpsCap > 1000)
+						(cast (Lib.current.getChildAt(0), Main)).setFPSCap(1000);
 					
 					PlayState.instance.clean();
 

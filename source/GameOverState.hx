@@ -23,6 +23,10 @@ class GameOverState extends FlxTransitionableState
 
 	override function create()
 	{
+		if (!FlxG.save.data.GC) {
+			Gc.enable(true);
+			trace("Player died. We can reenable the garbage collector");
+		}
 		var loser:FlxSprite = new FlxSprite(100, 100);
 		var loseTex = Paths.getSparrowAtlas('lose');
 		loser.frames = loseTex;

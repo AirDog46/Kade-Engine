@@ -1,6 +1,7 @@
 package;
 
 
+import cpp.vm.Gc;
 import Song.Event;
 import openfl.media.Sound;
 #if sys
@@ -1692,6 +1693,10 @@ class PlayState extends MusicBeatState
 
 	function startSong():Void
 	{
+		if (!FlxG.save.data.GC) {
+			Gc.enable(false);
+			trace("Song started. Garbage collection has been disabled");
+		}
 		startingSong = false;
 		songStarted = true;
 		previousFrameTime = FlxG.game.ticks;
@@ -3313,6 +3318,10 @@ class PlayState extends MusicBeatState
 
 	function endSong():Void
 	{
+		if (!FlxG.save.data.GC) {
+			Gc.enable(true);
+			trace("Song ended. We can reenable the garbage collector");
+		}
 		endingSong = true;
 		FlxG.stage.removeEventListener(KeyboardEvent.KEY_DOWN, handleInput);
 		FlxG.stage.removeEventListener(KeyboardEvent.KEY_UP, releaseInput);
@@ -3334,8 +3343,8 @@ class PlayState extends MusicBeatState
 			PlayStateChangeables.useDownscroll = false;
 		}
 
-		if (FlxG.save.data.fpsCap > 290)
-			(cast(Lib.current.getChildAt(0), Main)).setFPSCap(290);
+		if (FlxG.save.data.fpsCap > 1000)
+			(cast(Lib.current.getChildAt(0), Main)).setFPSCap(1000);
 
 		#if cpp
 		if (luaModchart != null)

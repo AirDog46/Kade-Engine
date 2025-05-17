@@ -1,5 +1,6 @@
 package;
 
+import cpp.vm.Gc;
 import lime.app.Application;
 #if windows
 import Discord.DiscordClient;
@@ -102,12 +103,16 @@ class Main extends Sprite
 		fpsCounter = new FPS(10, 3, 0xFFFFFF);
 		addChild(fpsCounter);
 		toggleFPS(FlxG.save.data.fps);
+		memory = new Memory(10, 15, 0xFFFFFF);
+		addChild(memory);
 		#end
 	}
 
 	var game:FlxGame;
 
 	var fpsCounter:FPS;
+
+	var memory:Memory;
 
 	public function toggleFPS(fpsEnabled:Bool):Void {
 		fpsCounter.visible = fpsEnabled;

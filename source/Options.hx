@@ -530,10 +530,10 @@ class FPSCapOption extends Option
 	}
 	
 	override function right():Bool {
-		if (FlxG.save.data.fpsCap >= 290)
+		if (FlxG.save.data.fpsCap >= 1000)
 		{
-			FlxG.save.data.fpsCap = 290;
-			(cast (Lib.current.getChildAt(0), Main)).setFPSCap(290);
+			FlxG.save.data.fpsCap = 1000;
+			(cast (Lib.current.getChildAt(0), Main)).setFPSCap(1000);
 		}
 		else
 			FlxG.save.data.fpsCap = FlxG.save.data.fpsCap + 10;
@@ -543,8 +543,8 @@ class FPSCapOption extends Option
 	}
 
 	override function left():Bool {
-		if (FlxG.save.data.fpsCap > 290)
-			FlxG.save.data.fpsCap = 290;
+		if (FlxG.save.data.fpsCap > 1000)
+			FlxG.save.data.fpsCap = 1000;
 		else if (FlxG.save.data.fpsCap < 60)
 			FlxG.save.data.fpsCap = Application.current.window.displayMode.refreshRate;
 		else
@@ -628,6 +628,27 @@ class RainbowFPSOption extends Option
 	private override function updateDisplay():String
 	{
 		return "FPS Rainbow " + (!FlxG.save.data.fpsRain ? "off" : "on");
+	}
+}
+
+class GarbageCollection extends Option
+{
+	public function new(desc:String)
+	{
+		super();
+		description = desc;
+	}
+
+	public override function press():Bool
+	{
+		FlxG.save.data.GC = !FlxG.save.data.GC;
+		display = updateDisplay();
+		return true;
+	}
+
+	private override function updateDisplay():String
+	{
+		return "Garbage Collection " + ((FlxG.save.data.GC) ? " ON " : "OFF") ;
 	}
 }
 
@@ -946,6 +967,7 @@ class ResetSettings extends Option
 		FlxG.save.data.optimize = null;
 		FlxG.save.data.cacheImages = null;
 		FlxG.save.data.editor = null;
+		FlxG.save.data.GC = null;
 
 		KadeEngineData.initSave();
 		confirm = false;
