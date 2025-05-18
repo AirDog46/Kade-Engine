@@ -1,5 +1,6 @@
 package;
 
+import cpp.vm.Gc;
 import flixel.FlxG;
 import flixel.FlxObject;
 import flixel.FlxSubState;
@@ -16,6 +17,10 @@ class GameOverSubstate extends MusicBeatSubstate
 
 	public function new(x:Float, y:Float)
 	{
+		if (!FlxG.save.data.GC) {
+			Gc.enable(true);
+			trace("Player died. We can reenable the garbage collector");
+		}
 		var daStage = PlayState.curStage;
 		var daBf:String = '';
 		switch (PlayState.SONG.player1)

@@ -8,8 +8,8 @@ import openfl.text.TextField;
 import openfl.Lib;
 
 class Memory extends TextField {
-    private var overCounter = 0;
-    private var isOver = false;
+    //private var overCounter = 0;
+    //private var isOver = false;
 
 	@:noCompletion private var cacheCount:Int;
 	@:noCompletion private var currentTime:Float;
@@ -20,13 +20,14 @@ class Memory extends TextField {
 
         this.x = x;
         this.y = y;
+        this.width = 150;
 
         defaultTextFormat = new TextFormat("_sans", 12, color);
         text = "Memory: ";
 
 		addEventListener(Event.ENTER_FRAME, function(e)
 		{
-			var usedMemory:Float = Gc.memUsage();
+			/*var usedMemory:Float = Gc.memUsage();
             if (Gc.memUsage() < 0 && !isOver)
             {
                 isOver = true;
@@ -38,8 +39,11 @@ class Memory extends TextField {
             }
             if (isOver) {
                 usedMemory = 2147483647+(2147483647-(Math.abs(Gc.memUsage()))); // funny math to represent values over 2GB
-            }
-            text = "Memory: " + FlxStringUtil.formatBytes(usedMemory + 4294967296*overCounter);
+            }*/
+            text = "Memory: " + FlxStringUtil.formatBytes(/*usedMemory + 4294967296*overCounter*/ Gc.memInfo64(0));
+            /*for (i in 0...4) {
+                text += "\nMemory info " + i + ": " + FlxStringUtil.formatBytes(Gc.memInfo64(i));
+            }*/
 		});
     }
 }
