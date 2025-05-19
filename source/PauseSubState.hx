@@ -33,8 +33,6 @@ class PauseSubState extends MusicBeatSubstate
 	public function new(x:Float, y:Float)
 	{
 		super();
-		cpp.vm.Gc.run(true);
-		trace("Game paused. We can run the garbage collector");
 
 		if (PlayState.instance.useVideo)
 		{
@@ -83,7 +81,7 @@ class PauseSubState extends MusicBeatSubstate
 		perSongOffset = new FlxText(5, FlxG.height - 18, 0, "Additive Offset (Left, Right): " + PlayState.songOffset + " - Description - " + 'Adds value to global offset, per song.', 12);
 		perSongOffset.scrollFactor.set();
 		perSongOffset.setFormat("VCR OSD Mono", 16, FlxColor.WHITE, LEFT, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-		
+
 		#if cpp
 			add(perSongOffset);
 		#end

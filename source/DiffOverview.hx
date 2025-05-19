@@ -60,9 +60,9 @@ class DiffOverview extends FlxSubState
 
         FlxG.cameras.add(camGame);
 
-        FlxG.cameras.add(camHUD);
+        FlxG.cameras.add(camHUD, false);
 
-		FlxCamera.defaultCameras = [camGame];
+		//FlxG.cameras.setDefaultDrawTarget(camGame,true);
 
         playerStrums = new FlxTypedGroup<FlxSprite>();
 
